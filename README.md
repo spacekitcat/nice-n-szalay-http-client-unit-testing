@@ -120,7 +120,7 @@ namespace HttpTestProjct2
 ### Unit tests
 The unit tests are defined in a seperate project within the same solution, which I've already decided is just a strange and mysterious social more of the .net world that I might as well just move past unless I want to be prosecuted for metaphorical social order offences against the high order of Anders Hejlsberg. The unit test project is in this Git repository and you can take a look at that for more details.
 
-I define a unit test for the abstraction client. As you can see, it uses mock HTTP client mentioned earlier instead of a real one. The tests verify the invokation of HttpClient, the response parsing and the ultimate result. We define a couple of tests to verify it's ability to enforce its requirements to operate correctly.
+I define a unit test for the abstraction client. As you can see, it uses mock HTTP client mentioned earlier instead of a real one. The tests verify the invokation of HttpClient, the response parsing and the ultimate result. We define a couple of tests to verify its ability to enforce its requirements to operate correctly.
 
 ```C#
 using HttpTestProjct2;
