@@ -1,6 +1,6 @@
 # Nice 'N Szalay
 
-This is an experiment exploing the use of [Richard Szalay's Mock HTTP library](https://github.com/richardszalay/mockhttp) to create fully unit tested HTTP Clients for a particular service that can then be mocked further down your application's dependency tree.
+This repository represents some exploration into the use of [Richard Szalay's Mock HTTP library](https://github.com/richardszalay/mockhttp) to create fully unit tested HTTP Clients that are specific to a particular service your application needs to talk to. The abstraction client can then be mocked itself further up your application's dependency tree to seperate the concerns of your test suites.
 
 ## Setup
 You need to provide an HTTP endpoint with a straightforward GET method at `http://localhost:3000/answer` and it should return a JSON string with the following structure:
@@ -9,14 +9,14 @@ You need to provide an HTTP endpoint with a straightforward GET method at `http:
 { "code": "4284-2033-7359-1983" }
 ```
 
-I recommend using [Mockoon](https://mockoon.com/) to create up a fake server in a few minutes.
+I recommend using [Mockoon](https://mockoon.com/) to create a fake server in a few minutes. Just add a GET request (`/answer`) and make it return OK (200) with the payload in the example snippet above. 
 
 ## Commentary and notes
 
-Pretend we have a webservice at `http://localhost:3000/answer` and we need to send it a `GET` request to acquire a special code that our application then needs to authenticate the launch of a nuclear missle from the dark side of the Moon. 
+Pretend we have a web service at `http://localhost:3000/answer` and we need to send it a `GET` request to acquire a special code that our application then needs to authenticate the launch of a nuclear missle from the dark side of the Moon. 
 
 ### Code
-I implement an abstraction client for talking to the webservice, which is essentially the \* GoF Bridge pattern (*Decouple an abstraction from its implementation so that the two can vary independently*)  
+I implement an abstraction client for talking to the webservice, which is essentially the \* GoF Bridge pattern (*Decouple an abstraction from its implementation so that the two can vary independently*). The project is in thie Git repository.
 
 I define an interface, `IMagicResultHttpClient`, for the abstraction client.
 
@@ -33,7 +33,7 @@ namespace HttpTestProjct2
 
 ```
 
-I define an implementation, `MagicResultHttpClient`, for the abstraction client interface. Notice how it takes an instance of `HttpClient` in the first argument of the constuctor, this is a vital detail of this experiment because it provides a clear way to inject a mock instance. 
+I define an implementation, `MagicResultHttpClient`, for the abstraction client interface. Notice how it takes an instance of `HttpClient` in the first argument of the constructor, this is a vital detail of this experiment because it provides a clear way to inject a mock instance. 
 
 ```C#
 using Newtonsoft.Json;
@@ -118,7 +118,7 @@ namespace HttpTestProjct2
 ```
 
 ### Unit tests
-The unit tests are defined in a seperate project within the same solution, which I've already decided is just a strange and mysterious social more of the .net world that I might as well just move past unless I want to be prosecuted for metaphorical social order offences against the high order of Anders Hejlsberg. The project is in this Git repository and you can take a look at that for more details.
+The unit tests are defined in a seperate project within the same solution, which I've already decided is just a strange and mysterious social more of the .net world that I might as well just move past unless I want to be prosecuted for metaphorical social order offences against the high order of Anders Hejlsberg. The unit test project is in this Git repository and you can take a look at that for more details.
 
 I define a unit test for the abstraction client. As you can see, it uses mock HTTP client mentioned earlier instead of a real one. The tests verify the invokation of HttpClient, the response parsing and the ultimate result. We define a couple of tests to verify it's ability to enforce its requirements to operate correctly.
 
