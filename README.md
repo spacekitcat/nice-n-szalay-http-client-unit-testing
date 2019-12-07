@@ -16,7 +16,7 @@ I recommend using [Mockoon](https://mockoon.com/) to create a fake server in a f
 Pretend we have a web service at `http://localhost:3000/answer` and we need to send it a `GET` request to acquire a special code that our application then needs to authenticate the launch of a nuclear missle from the dark side of the Moon. 
 
 ### Code
-I implement an abstraction client for talking to the webservice, which is essentially the \* GoF Bridge pattern (*Decouple an abstraction from its implementation so that the two can vary independently*). The project is in thie Git repository.
+I implement an abstraction client for talking to the webservice, which is essentially the \* GoF Bridge pattern (*Decouple an abstraction from its implementation so that the two can vary independently*). The project is in this Git repository.
 
 I define an interface, `IMagicResultHttpClient`, for the abstraction client.
 
